@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     // errorMassage = "User credential not match";
     errorMassage = "";
     
-    users = {'userid': '', 'password': ''}
+    user = {'userid': '', 'password': ''}
     constructor(private router:Router, private httpClient: HttpClient) { }
 
 
@@ -29,12 +29,37 @@ export class LoginComponent implements OnInit {
     console.log('user inputs:', this.userid, this.password);
     console.log('login clicked');
 
-    let users = {'username': this.userid, 'password': this.password}
-    console.log(users);
+    // let user = {'username': this.userid, 'password': this.password, 'birthdate': null, 'age':null,'email':null, 'valid':false}
+    // console.log('default value:' + user);
 
-    // this.httpClient.post(BACKEND_URL + '/api/login', users,  httpOptions).subscribe((data:any)=>{
-    this.httpClient.post(BACKEND_URL + '/api/login', users).subscribe(res=>
-      {console.log(res);},);
+    // this.httpClient.post(BACKEND_URL + '/api/login', user,  httpOptions).subscribe((data:any)=>{
+    // this.httpClient.post(BACKEND_URL + '/api/login', user).subscribe(res=>
+    //   {console.log(res);},);
+
+    let userLogin = {'username': this.userid, 'password': this.password}
+    this.httpClient.post(BACKEND_URL + '/api/login', userLogin).subscribe((data: any)=>{
+      console.log(data)
+      console.log(data.username)
+      console.log(data.password)
+      console.log(data.valid)
+
+      console.log(data.email)
+      console.log(data.age)
+
+
+      // console.log(sessionStorage)
+
+      // alert(JSON.stringify(this.password));
+      if (data.valid) {
+        sessionStorage.setItem('username', this.userid);
+        sessionStorage.setItem('birthdate', data.birthdate);
+        sessionStorage.setItem('age', data.age);
+        sessionStorage.setItem('email', data.email);
+        sessionStorage.setItem('valid', data.valid);
+        console.log('valid user' + sessionStorage);
+      } else { alert("email or password incorrect");}
+    }
+    );
     
   }
 }

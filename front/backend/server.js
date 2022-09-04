@@ -19,17 +19,43 @@ app.use(bodyParser.json());
 
 //route for check inputs
 app.post('/api/login', (req,res)=>{
-    let users = [{'email': 'abc@com.au', 'password': '123'}, {'email': 'abd@com.au', 'password': '123'}, {'email': 'abe@com.au', 'password': '123'}, ]
+    // let users = [
+    //     {'email': 'abc@com.au', 'password': '123'}, 
+    //     {'email': 'abd@com.au', 'password': '123'}, 
+    //     {'email': 'abe@com.au', 'password': '123'}, ]
+    let users = [
+        {'username': 'first',
+        'birthdate': '01/01/1991',
+        'age': 31,
+        'email': 'first@gmail.com',
+        'password': '123456',
+        'valid': false},
+        {'username': 'second',
+        'birthdate': '01/01/1991',
+        'age': 31,
+        'email': 'second@gmail.com',
+        'password': '654321',
+        'valid': false},
+        {'username': 'third',
+        'birthdate': '01/01/1991',
+        'age': 31,
+        'email': 'third@gmail.com',
+        'password': '555555',
+        'valid': false},
+    ]
     if (!req.body) {
         return res.sendStatus(400)
     }
     var customer = {};
-    customer.email = req.body.email;
+    customer.username = req.body.username;
     customer.password = req.body.password;
     customer.valid = false;
     for (let i = 0; i < users.length; i ++){
-        if (req.body.email == users[i].email && req.body.password == users[i].password){
+        if (req.body.username == users[i].username && req.body.password == users[i].password){
             customer.valid = true;
+            customer.birthdate = users[i].birthdate;
+            customer.age = users[i].age;
+            customer.email = users[i].email;
         }
     }
     res.send(customer);
