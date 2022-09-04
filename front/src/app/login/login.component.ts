@@ -57,6 +57,8 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('email', data.email);
         sessionStorage.setItem('valid', data.valid);
         console.log('valid user' + sessionStorage);
+        this.router.navigateByUrl('/account/' + this.userid);
+
       } else { alert("email or password incorrect");}
     }
     );

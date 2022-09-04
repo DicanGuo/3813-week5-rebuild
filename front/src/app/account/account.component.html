@@ -1,3 +1,22 @@
 <h1>{{title}}</h1>
-<p>User ID: {{userid}}</p>
-<img src="assets/images/dc.png">
+<h2>Welcome {{username}}</h2>
+<img style="padding: 2rem;" src="assets/images/dc.png">
+
+<div style="display: flex">
+    <div>
+        <p>Email address: </p>
+        <p>Account Valid: </p>
+        <p>DOB: </p>
+        <p>Age: </p>
+        <button (click)="logout()" id="submit" type="button" class="fadeIn fourth" value="Log Out">Logout</button>
+
+    </div>
+    <div style="margin-left: 1rem;">
+        <p>{{email}}</p>
+        <p>{{valid}}</p>
+        <p>{{birthdate}}</p>
+        <p>{{age}}</p>
+    </div>
+</div>
+
+
