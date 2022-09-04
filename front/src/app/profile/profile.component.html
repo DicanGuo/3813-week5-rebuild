@@ -1,1 +1,37 @@
-<p>profile works!</p>
+<h1>{{title}}</h1>
+<h2>{{username}}</h2>
+<img style="padding: 2rem;" src="assets/images/dc.png">
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- <p>{{email}}</p>
+        <p>{{valid}}</p>
+        <p>{{birthdate}}</p>
+        <p>{{age}}</p> -->
+        <form>
+            <div>
+                <label>Email address: </label>
+                <input type="text" [(ngModel)]="email" id="email" class="fadeIn second" name="email" style="margin-left: 1rem;">
+            </div>
+            <div style="padding-top: 1rem;">
+                <label>DOB: </label>
+                <input type="text" [(ngModel)]="birthdate" id="birthdate" class="fadeIn second" name="birthdate" placeholder={{birthdate}} style="margin-left: 1rem;">
+
+            </div>
+            <div style="padding-top: 1rem;">
+                <label>Age: </label>
+                <input type="text" [(ngModel)]="age" id="age" class="fadeIn second" name="age" value={{age}} style="margin-left: 1rem;">
+
+            </div>
+            <div style="padding-top: 1rem;">
+                <label>Account Valid: {{valid}}</label>
+            </div>
+            <button (click)="save()" id="submit" type="button" class="fadeIn fourth" value="Save">Save</button>
+
+            <button (click)="logout()" id="submit" type="button" class="fadeIn fourth" value="Log Out" style="margin-left: 1rem;">Logout</button>
+
+        </form>
+    </div>
+</div>
+
+
+
