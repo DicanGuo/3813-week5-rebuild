@@ -23,10 +23,10 @@ export class ProfileComponent implements OnInit {
   // user = {'username': this.username, 'email': this.email, 'birthdate': this.birthdate, 'age': this.age, 'valid': this.valid}
 
   constructor(private route: ActivatedRoute, private router:Router) { 
-    // if (!(sessionStorage.getItem('valid')=="true")){
-    //   alert("login please");
-    //   this.router.navigateByUrl("/login");
-    // }
+    if (sessionStorage.getItem('valid')=='false'){
+      alert("Please Login First");
+      this.router.navigateByUrl("/login");
+    }
     this.username = sessionStorage.getItem('username')!;
     this.birthdate = sessionStorage.getItem('birthdate')!;
     this.age = sessionStorage.getItem('age')!;
@@ -50,10 +50,13 @@ export class ProfileComponent implements OnInit {
   save(){
     console.log(sessionStorage);
 
-    // sessionStorage.setItem('username', this.user.username);
+    sessionStorage.setItem('username', this.username);
+    sessionStorage.setItem('birthdate', this.birthdate);
     sessionStorage.setItem('age', this.age);
+    sessionStorage.setItem('email', this.email);
+
     console.log(sessionStorage)
-    //this.router.navigateByUrl('/account/' + this.username);
+    this.router.navigateByUrl('/account/' + this.username);
 
   }
 }
