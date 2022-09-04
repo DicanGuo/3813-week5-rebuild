@@ -1,39 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json'})
+};
+const BACKEND_URL = 'http://localhost:3000';
+// for angular http methods
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+
     userid: string = '';
     password: string = '';
     // errorMassage = "User credential not match";
     errorMassage = "";
     
-    users = [
-      {'userid': '1', 'password': '123'},
-      {'userid': '2', 'password': '123'},
-      {'userid': '3', 'password': '123'}
-    ]
+    users = {'userid': '', 'password': ''}
+    constructor(private router:Router, private httpClient: HttpClient) { }
 
-  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
+  login(){
+    console.log('user inputs:', this.userid, this.password);
+    console.log('login clicked');
 
-  itemClicked(){
-    console.log(this.userid, this.password);
-    console.log(this.users.length)
-    // this.router.navigate('/account:userid')
-    for (let i = 0; i < this.users.length; i ++){
-      if (this.userid == this.users[i].userid && this.password == this.users[i].password) {
-        this.router.navigateByUrl('/account/' + this.userid);
-      }
-      else {
-        this.errorMassage = "User credential not match";
-      }
-    }
+    let users = {'username': this.userid, 'password': this.password}
+    console.log(users);
+
+    // this.httpClient.post(BACKEND_URL + '/api/login', users,  httpOptions).subscribe((data:any)=>{
+    this.httpClient.post(BACKEND_URL + '/api/login', users).subscribe(res=>
+      {console.log(res);},);
+    
   }
 }
