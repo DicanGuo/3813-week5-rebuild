@@ -26,11 +26,11 @@ export class AccountComponent implements OnInit {
 
   title = 'Account Page';
   logout(){
-
     sessionStorage.clear();
     console.log(sessionStorage);
     this.router.navigateByUrl('/');
-
   }
-
+  profile(){
+    this.router.navigateByUrl('/account/' + this.username + '/profile');
+  }
 }
