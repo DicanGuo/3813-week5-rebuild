@@ -1,5 +1,15 @@
 # 3813-week5-rebuild
 
+# Front & Server
+
+## Front
+This is the front end app for user login
+
+## Server
+
+This is the backend Node.js server that listen to Http Requests from frontend and send info back.
+The server folder is under Front folder at this stage
+
 # Front
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.1.
